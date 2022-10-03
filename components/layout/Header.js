@@ -1,24 +1,20 @@
-//@ts-check
-import React, { useEffect } from "react";
-import { Box, HStack, StatusBar, Text } from "native-base";
-import { getMoviesByType } from "../../services/api";
+import { Box, HStack, StatusBar, Text } from 'native-base';
 
-export const Header = () => {
-  useEffect(() => {
-    getMoviesByType()
-      .then(movies => {
-        console.log('movies: ', movies);
-
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  return (
-    <>
-      <Box safeAreaTop>
-        <HStack>
-          <Text>Movie</Text>
-        </HStack>
-      </Box>
-    </>
-  );
-};
+export const Header = () => (
+  <>
+    <StatusBar backgroundColor="#2c3e50" barStyle="light-content" />
+    <Box safeAreaTop backgroundColor="#2c3e50">
+      <HStack
+        bg="#2c3e50"
+        px={1}
+        py={3}
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Text color="#fff" fontSize={20} fontWeight="bold">
+          Recipe App
+        </Text>
+      </HStack>
+    </Box>
+  </>
+);
