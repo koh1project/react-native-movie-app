@@ -2,22 +2,26 @@
 import axios from 'axios';
 import qs from 'qs';
 import { API_KEY, BASE_URL } from './api_config';
-import {
-  GetMoviesRequestType,
-  MoviesResponse,
-  // @ts-ignore
-} from '../types/index.d.ts';
-
-import { GET_MOVIES_REQUEST_TYPES } from '../const';
+import { GET_MOVIES_REQUEST_TYPES, MEDIA_TYPES } from '../const';
 
 /**
- * @param {GetMoviesRequestType} request_type
- * @returns {MoviesResponse}
+ * @typedef {import('../types/custom').GetMoviesRequestType} GetMoviesRequestType
+ * @typedef {import('../types/custom').GetTvsRequestType} GetTvsRequestType
+ * @typedef {import('../types/custom').MediaTypes} MediaTypes
+ * @typedef {import('../types/custom').MoviesResponse} MoviesResponse
+ * @typedef {import('../types/custom').MovieDB} MovieDB
+ */
+
+/**
+ * @param {GetMoviesRequestType | GetTvsRequestType} request_type
+ * @param {MediaTypes} media_type
+ * @returns {Promise<MoviesResponse>}
  */
 export const getMoviesByType = async (
-  request_type = GET_MOVIES_REQUEST_TYPES.POPULAR
+  request_type = GET_MOVIES_REQUEST_TYPES.POPULAR,
+  media_type = MEDIA_TYPES.MOVIE
 ) => {
-  const url = `${BASE_URL}/movie/${request_type}`;
+  const url = `${BASE_URL}/${media_type}/${request_type}`;
 
   try {
     const params = {
@@ -30,6 +34,27 @@ export const getMoviesByType = async (
     });
 
     const response = await movieAxios.get(url, { params });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
+ * @param {string} id
+ * @param {MediaTypes} type
+ * @returns {Promise<MovieDB.Movie>}
+ */
+export const getDetailsById = async (type, id) => {
+  const url = `${BASE_URL}/${type}/${id}`;
+
+  try {
+    const params = {
+      api_key: API_KEY,
+    };
+
+    const response = await axios.get(url, { params });
 
     return response.data;
   } catch (error) {

@@ -1,17 +1,28 @@
+//@ts-check
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { CheckIcon, Icon, Select } from 'native-base';
 import { GET_MOVIES_REQUEST_TYPES } from '../../const';
 
+/** @typedef {import('../../types/custom').GetTvsRequestType} GetTvsRequestType */
+/** @typedef {import('../../types/custom').GetMoviesRequestType} GetMoviesRequestType */
+/** @typedef {import('../../types/custom').MediaTypes} MediaTypes */
+
+/**
+ * @param {{
+ *  selectedItem: GetTvsRequestType | GetMoviesRequestType;
+ *  optionItems: Record<string, GetTvsRequestType | GetMoviesRequestType>;
+ *  handleOnChange: Function;
+ * }} props
+ */
 export const Filters = ({
   handleOnChange,
   selectedItem = GET_MOVIES_REQUEST_TYPES.POPULAR,
-  isError,
   optionItems = GET_MOVIES_REQUEST_TYPES,
 }) => {
   return (
     <Select
-      borderColor={isError ? '#FF0000' : '#e4e4e7'}
+      borderColor="#e4e4e7"
       selectedValue={selectedItem}
       fontSize={16}
       minWidth="130"

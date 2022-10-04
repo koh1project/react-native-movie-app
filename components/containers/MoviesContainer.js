@@ -5,12 +5,25 @@ import { Loading } from '../layout/Loading';
 import { Movie } from '../movie';
 import { getMoviesByType } from '../../services/api';
 
+/**
+ * @typedef {import('../../types/custom').GetTvsRequestType} GetTvsRequestType
+ * @typedef {import('../../types/custom').GetMoviesRequestType} GetMoviesRequestType
+ * @typedef {import('../../types/custom').MediaTypes} MediaTypes
+ * @typedef {import('../../types/custom').MoviesResponse} MoviesResponse
+ */
+
+/**
+ * @param {{
+ *  selectedItem: GetTvsRequestType | GetMoviesRequestType;
+ *  type: MediaTypes;
+ * }} props
+ */
 export const MoviesContainer = ({ type, selectedItem }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getData = async (type) => {
-    const response = await getMoviesByType(selectedItem);
+    const response = await getMoviesByType(selectedItem, type);
     setData(response.results);
   };
 
