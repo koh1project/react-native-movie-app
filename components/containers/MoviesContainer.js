@@ -5,12 +5,12 @@ import { Loading } from '../layout/Loading';
 import { Movie } from '../movie';
 import { getMoviesByType } from '../../services/api';
 
-export const MoviesContainer = ({ type }) => {
+export const MoviesContainer = ({ type, selectedItem }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getData = async (type) => {
-    const response = await getMoviesByType();
+    const response = await getMoviesByType(selectedItem);
     setData(response.results);
   };
 
@@ -21,7 +21,7 @@ export const MoviesContainer = ({ type }) => {
   useEffect(() => {
     setLoading(true);
     getData(type).then(() => setLoading(false));
-  }, []);
+  }, [selectedItem]);
 
   return (
     <Box style={{ flex: 1 }}>

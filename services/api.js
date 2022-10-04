@@ -1,14 +1,14 @@
 //@ts-check
-import axios from "axios";
-import qs from "qs";
-import { API_KEY, BASE_URL } from "./api_config";
+import axios from 'axios';
+import qs from 'qs';
+import { API_KEY, BASE_URL } from './api_config';
 import {
   GetMoviesRequestType,
   MoviesResponse,
   // @ts-ignore
-} from "../types/index.d.ts";
+} from '../types/index.d.ts';
 
-import { GET_MOVIES_REQUEST_TYPES } from "../const";
+import { GET_MOVIES_REQUEST_TYPES } from '../const';
 
 /**
  * @param {GetMoviesRequestType} request_type
@@ -26,14 +26,13 @@ export const getMoviesByType = async (
 
     const movieAxios = axios.create({
       paramsSerializer: (params) =>
-        qs.stringify(params, { arrayFormat: "repeat" }),
+        qs.stringify(params, { arrayFormat: 'repeat' }),
     });
 
     const response = await movieAxios.get(url, { params });
 
     return response.data;
   } catch (error) {
-    console.log("error: ", error);
     throw error;
   }
 };
