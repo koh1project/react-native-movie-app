@@ -4,25 +4,23 @@ import { Ionicons } from '@expo/vector-icons';
 import { CheckIcon, Icon, Select } from 'native-base';
 import { GET_MOVIES_REQUEST_TYPES } from '../../const';
 
-/** @typedef {import('../../types/custom').GetTvsRequestType} GetTvsRequestType */
-/** @typedef {import('../../types/custom').GetMoviesRequestType} GetMoviesRequestType */
-/** @typedef {import('../../types/custom').MediaTypes} MediaTypes */
-
 /**
  * @param {{
- *  selectedItem: GetTvsRequestType | GetMoviesRequestType;
- *  optionItems: Record<string, GetTvsRequestType | GetMoviesRequestType>;
+ *  selectedItem: GetTvsRequestType | GetMoviesRequestType | SearchTypes;
+ *  optionItems: Record<string, SearchTypes| GetTvsRequestType | GetMoviesRequestType>;
  *  handleOnChange: Function;
+ *  hasError?: boolean;
  * }} props
  */
 export const Filters = ({
   handleOnChange,
   selectedItem = GET_MOVIES_REQUEST_TYPES.POPULAR,
   optionItems = GET_MOVIES_REQUEST_TYPES,
+  hasError = false,
 }) => {
   return (
     <Select
-      borderColor="#e4e4e7"
+      borderColor={hasError ? '#ff0000' : '#e4e4e7'}
       selectedValue={selectedItem}
       fontSize={16}
       minWidth="130"
@@ -42,3 +40,8 @@ export const Filters = ({
     </Select>
   );
 };
+
+/** @typedef {import('../../types/custom').GetTvsRequestType} GetTvsRequestType */
+/** @typedef {import('../../types/custom').GetMoviesRequestType} GetMoviesRequestType */
+/** @typedef {import('../../types/custom').MediaTypes} MediaTypes */
+/** @typedef {import('../../types/custom').SearchTypes} SearchTypes */

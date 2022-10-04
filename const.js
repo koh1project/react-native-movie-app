@@ -17,3 +17,9 @@ export const GET_TVS_REQUEST_TYPES = /** @type {const} */ ({
   TOP_RATED: 'top_rated',
   ON_THE_AIR: 'on_the_air',
 });
+
+export const SEARCH_TYPES = /** @type {const} */ ({
+  MOVIE: 'movie',
+  MULTI: 'multi',
+  TV: 'tv',
+});

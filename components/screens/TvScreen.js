@@ -6,11 +6,6 @@ import { Filters } from '../filters';
 import { GET_TVS_REQUEST_TYPES, MEDIA_TYPES } from '../../const';
 import { MoviesContainer } from '../containers';
 
-/**
- * @typedef {import('../../types/custom').GetTvsRequestType} GetTvsRequestType
- * @typedef {import('../../types/custom').MediaTypes} MediaTypes
- */
-
 export const TvScreen = () => {
   const [selectedItem, setSelectedItem] = useState(
     GET_TVS_REQUEST_TYPES.POPULAR

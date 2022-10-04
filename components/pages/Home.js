@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Header } from '../layout/Header';
-import { MoviesScreen, TvScreen } from '../screens';
+import { MoviesScreen, TvScreen, SearchScreen } from '../screens';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -16,6 +16,11 @@ export const Home = () => {
         }}
       >
         <Tab.Screen name="Movies" component={MoviesScreen} />
+        <Tab.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{ tabBarLabel: 'Search Results' }}
+        />
         <Tab.Screen
           name="TvScreen"
           component={TvScreen}

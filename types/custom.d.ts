@@ -6,6 +6,7 @@ import {
   GET_MOVIES_REQUEST_TYPES,
   MEDIA_TYPES,
   GET_TVS_REQUEST_TYPES,
+  SEARCH_TYPES,
 } from '../const';
 
 export type MoviesResponse = {
@@ -25,3 +26,5 @@ export type GetMoviesRequestType =
 export type MediaTypes = typeof MEDIA_TYPES[keyof typeof MEDIA_TYPES];
 export type GetTvsRequestType =
   typeof GET_TVS_REQUEST_TYPES[keyof typeof GET_TVS_REQUEST_TYPES];
+
+export type SearchTypes = typeof SEARCH_TYPES[keyof typeof SEARCH_TYPES];

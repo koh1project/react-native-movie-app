@@ -4,11 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { IMAGE_URL } from '../../services/api_config';
 
 /**
- * @typedef {import('../../types/custom').MovieDB} MovieDB
- * @typedef {import('../../types/custom').MediaTypes} MediaTypes
- */
-
-/**
  * @param {{
  *  movie: MovieDB.Movie
  *  type: MediaTypes;
@@ -53,3 +48,8 @@ export const Movie = ({ movie, type }) => {
     </Box>
   );
 };
+
+/**
+ * @typedef {import('../../types/custom').MovieDB} MovieDB
+ * @typedef {import('../../types/custom').MediaTypes} MediaTypes
+ */

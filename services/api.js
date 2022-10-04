@@ -5,14 +5,6 @@ import { API_KEY, BASE_URL } from './api_config';
 import { GET_MOVIES_REQUEST_TYPES, MEDIA_TYPES } from '../const';
 
 /**
- * @typedef {import('../types/custom').GetMoviesRequestType} GetMoviesRequestType
- * @typedef {import('../types/custom').GetTvsRequestType} GetTvsRequestType
- * @typedef {import('../types/custom').MediaTypes} MediaTypes
- * @typedef {import('../types/custom').MoviesResponse} MoviesResponse
- * @typedef {import('../types/custom').MovieDB} MovieDB
- */
-
-/**
  * @param {GetMoviesRequestType | GetTvsRequestType} request_type
  * @param {MediaTypes} media_type
  * @returns {Promise<MoviesResponse>}
@@ -32,7 +24,6 @@ export const getMoviesByType = async (
       paramsSerializer: (params) =>
         qs.stringify(params, { arrayFormat: 'repeat' }),
     });
-
     const response = await movieAxios.get(url, { params });
 
     return response.data;
@@ -53,7 +44,6 @@ export const getDetailsById = async (type, id) => {
     const params = {
       api_key: API_KEY,
     };
-
     const response = await axios.get(url, { params });
 
     return response.data;
@@ -61,3 +51,33 @@ export const getDetailsById = async (type, id) => {
     throw error;
   }
 };
+
+/**
+ * @param {string} query
+ * @param {SearchTypes} selectedItem
+ * @returns {Promise<MoviesResponse>}
+ */
+export const fetchSearchResult = async (selectedItem, query) => {
+  const url = `${BASE_URL}/search/${selectedItem}`;
+  const params = {
+    api_key: API_KEY,
+    query,
+  };
+
+  try {
+    const response = await axios.get(url, { params });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * @typedef {import('../types/custom').GetMoviesRequestType} GetMoviesRequestType
+ * @typedef {import('../types/custom').GetTvsRequestType} GetTvsRequestType
+ * @typedef {import('../types/custom').MediaTypes} MediaTypes
+ * @typedef {import('../types/custom').SearchTypes} SearchTypes
+ * @typedef {import('../types/custom').MoviesResponse} MoviesResponse
+ * @typedef {import('../types/custom').MovieDB} MovieDB
+ */
