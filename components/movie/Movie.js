@@ -13,7 +13,7 @@ export const Movie = ({ movie, type }) => {
   const navigation = useNavigation();
 
   return (
-    <Box width="60%" py="2">
+    <Box width="60%" py="2" shadow={3}>
       <HStack space="3" mx="4" justifyContent="space-between">
         <Image
           source={{ uri: `${IMAGE_URL}${movie.poster_path}` }}
@@ -33,6 +33,7 @@ export const Movie = ({ movie, type }) => {
           </Text>
           <Button
             size="lg"
+            style={{ backgroundColor: '#06b6d4' }}
             onPress={() =>
               navigation.navigate('ShowPage', {
                 id: movie.id,

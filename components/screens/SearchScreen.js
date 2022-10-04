@@ -11,12 +11,11 @@ const initFormState = {
 
 export const SearchScreen = () => {
   const [formInput, setFormInput] = useState(initFormState);
-  const [newSearch, setNewSearch] = useState(false);
 
   return (
     <>
       <Box py={5} ml={8}>
-        <SearchForm onSubmit={setFormInput} onReset={setNewSearch} />
+        <SearchForm onSubmit={setFormInput} />
         {!formInput?.query && (
           <Center mt={20}>
             <Text fontSize={20} bold ml={-8}>

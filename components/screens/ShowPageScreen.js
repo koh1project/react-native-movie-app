@@ -30,10 +30,10 @@ export const ShowPageScreen = ({ route }) => {
               alt="movie"
               size="2xl"
             />
-            <Text py={7}>
+            <Text py={7} color="#6a737f">
               {movie.overview ? movie.overview : 'No overview available'}
             </Text>
-            <Text mb={10} fontSize="xs">
+            <Text mb={10} fontSize="xs" color="#6e747c">
               Popularity: {movie.popularity || 'Not available'} | Release Date:
               {type === 'movie'
                 ? movie.release_date || 'Not available'

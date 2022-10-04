@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Filters } from '../filters';
 import { MEDIA_TYPES, SEARCH_TYPES } from '../../const';
 
-export const SearchForm = ({ onSubmit, onReset }) => {
+export const SearchForm = ({ onSubmit }) => {
   const [selectedItem, setSelectedItem] = useState(SEARCH_TYPES.MULTI);
   const [query, setQuery] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -16,9 +16,8 @@ export const SearchForm = ({ onSubmit, onReset }) => {
       return;
     }
 
-    setErrorMsg('');
-    onReset((prev) => !prev);
     onSubmit({ query, selectedItem });
+    setErrorMsg('');
   };
 
   return (
@@ -35,17 +34,16 @@ export const SearchForm = ({ onSubmit, onReset }) => {
             as={<Ionicons name="search" />}
             size={5}
             ml="2"
-            color="#2c3e50"
+            color="#a9a9b1"
           />
         }
         placeholder="i.e. James Bond, CSI"
-        placeholderTextColor="#2c3e50"
+        placeholderTextColor="#b6b6b7"
         onChangeText={(text) => setQuery(text)}
         isRequired
         borderWidth={1}
         borderColor={errorMsg ? '#ff0000' : '#e4e4e7'}
       />
-
       <Text mt={3}>
         Choose Search Type<Text style={{ color: '#ff0000' }}>*</Text>
       </Text>
@@ -61,9 +59,10 @@ export const SearchForm = ({ onSubmit, onReset }) => {
         <Box w="2/5">
           <Button
             leftIcon={
-              <Icon as={Ionicons} name={MEDIA_TYPES.SEARCH} size="sm" />
+              <Icon as={Ionicons} name={MEDIA_TYPES.SEARCH} size="sm" mr={1} />
             }
             size="lg"
+            style={{ backgroundColor: '#06b6d4' }}
             mt={-1}
             onPress={handleSubmit}
           >
@@ -71,8 +70,8 @@ export const SearchForm = ({ onSubmit, onReset }) => {
           </Button>
         </Box>
       </HStack>
-      <Text color="#ff0000" mt={2}>
-        {errorMsg}
+      <Text color={errorMsg === '' ? '#848991' : '#ff0000'} mt={2}>
+        {errorMsg === '' ? 'Please select a search type' : errorMsg}
       </Text>
     </>
   );
